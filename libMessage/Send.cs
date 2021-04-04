@@ -38,7 +38,7 @@ namespace libMessage
                 Process.Start(filePath);
                 processList = Process.GetProcessesByName("popup");
             }
-            if (!running) Thread.Sleep(500);
+            if (!running) Thread.Sleep(1000);
             // send message
             byte[] buff = System.Text.Encoding.Default.GetBytes(msg);
             COPYDATASTRUCT cds = new COPYDATASTRUCT();
