@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace popup
 {
@@ -76,19 +78,42 @@ namespace popup
             tableLayoutPanel1.RowStyles.Clear();
         }
 
+        int childCount = 0;
+        Queue childHandle = new Queue();
+
         private void formCall(int height, string msg)
         {
             popupItem form = new popupItem(height, msg);
             form.TopLevel = false;
-            form.TopMost = true;
             form.ChildFormEvent += EventMethod;
             tableLayoutPanel1.RowStyles.Add(new RowStyle {
                 SizeType = SizeType.Absolute,
                 Height = height 
             });
             tableLayoutPanel1.Controls.Add(form);
+            childCount++;
             Renew(height);
             form.Show();
+            // keep child form handle
+            IntPtr hWnd = form.Handle;
+            childHandle.Enqueue(hWnd);
+            // check form boundary
+            chkFormBoundary();
+        }
+
+        public void chkFormBoundary()
+        {
+            if (this.Top < 0) 
+            {
+                Form theForm = null;
+                while (theForm == null)
+                {
+                    theForm = getForm((IntPtr)childHandle.Dequeue());
+                }
+                theForm.Close();
+                childCount--;
+                Renew(-100);
+            }
         }
 
         public void Renew(int height)
@@ -96,12 +121,20 @@ namespace popup
             this.Top -= height;
             formHeight += height;
             this.Size = new Size(x[pos], formHeight);
-            if (this.Top == y[pos]) Application.Exit();
+            if (childCount == 0) Application.Exit();
         }
 
         public void EventMethod(int height)
         {
+            childCount--;
             Renew(-height);
+        }
+
+        // handle to Form
+
+        static public Form getForm(IntPtr handle)
+        {
+            return handle == IntPtr.Zero ? null : Control.FromHandle(handle) as Form;
         }
     }
 }
