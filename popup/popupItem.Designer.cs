@@ -1,0 +1,163 @@
+﻿namespace popup
+{
+    partial class popupItem
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.closeBtn = new System.Windows.Forms.Button();
+            this.messagePanel = new System.Windows.Forms.Panel();
+            this.whitespaceLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.ellipseControl1 = new stopwatch.EllipseControl();
+            this.messageLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.messagePanel.SuspendLayout();
+            this.whitespaceLayout.SuspendLayout();
+            this.messageLayout.SuspendLayout();
+            this.buttonLayout.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.AutoSize = true;
+            this.closeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeBtn.ForeColor = System.Drawing.Color.Black;
+            this.closeBtn.Location = new System.Drawing.Point(3, 3);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(147, 109);
+            this.closeBtn.TabIndex = 0;
+            this.closeBtn.Text = "×";
+            this.closeBtn.UseVisualStyleBackColor = false;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // messagePanel
+            // 
+            this.messagePanel.BackColor = System.Drawing.Color.Black;
+            this.messagePanel.Controls.Add(this.messageLayout);
+            this.messagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messagePanel.Location = new System.Drawing.Point(3, 3);
+            this.messagePanel.Name = "messagePanel";
+            this.messagePanel.Size = new System.Drawing.Size(794, 390);
+            this.messagePanel.TabIndex = 2;
+            // 
+            // whitespaceLayout
+            // 
+            this.whitespaceLayout.BackColor = System.Drawing.Color.Transparent;
+            this.whitespaceLayout.ColumnCount = 1;
+            this.whitespaceLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.whitespaceLayout.Controls.Add(this.messagePanel, 0, 0);
+            this.whitespaceLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.whitespaceLayout.Location = new System.Drawing.Point(0, 0);
+            this.whitespaceLayout.Name = "whitespaceLayout";
+            this.whitespaceLayout.RowCount = 2;
+            this.whitespaceLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 99F));
+            this.whitespaceLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1F));
+            this.whitespaceLayout.Size = new System.Drawing.Size(800, 400);
+            this.whitespaceLayout.TabIndex = 1;
+            // 
+            // ellipseControl1
+            // 
+            this.ellipseControl1.CornerRadius = 30;
+            this.ellipseControl1.TargetControl = this.messagePanel;
+            // 
+            // messageLayout
+            // 
+            this.messageLayout.ColumnCount = 2;
+            this.messageLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.messageLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.messageLayout.Controls.Add(this.buttonLayout, 1, 0);
+            this.messageLayout.Controls.Add(this.lblMessage, 0, 0);
+            this.messageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messageLayout.Location = new System.Drawing.Point(0, 0);
+            this.messageLayout.Name = "messageLayout";
+            this.messageLayout.RowCount = 1;
+            this.messageLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.messageLayout.Size = new System.Drawing.Size(794, 390);
+            this.messageLayout.TabIndex = 1;
+            // 
+            // buttonLayout
+            // 
+            this.buttonLayout.ColumnCount = 1;
+            this.buttonLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonLayout.Controls.Add(this.closeBtn, 0, 0);
+            this.buttonLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonLayout.Location = new System.Drawing.Point(638, 3);
+            this.buttonLayout.Name = "buttonLayout";
+            this.buttonLayout.RowCount = 2;
+            this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.buttonLayout.Size = new System.Drawing.Size(153, 384);
+            this.buttonLayout.TabIndex = 1;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMessage.Location = new System.Drawing.Point(3, 0);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Padding = new System.Windows.Forms.Padding(10, 15, 10, 10);
+            this.lblMessage.Size = new System.Drawing.Size(629, 390);
+            this.lblMessage.TabIndex = 2;
+            this.lblMessage.Text = "label1";
+            // 
+            // popupItem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 400);
+            this.Controls.Add(this.whitespaceLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "popupItem";
+            this.Text = "Form1";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.popupItem_Load);
+            this.messagePanel.ResumeLayout(false);
+            this.whitespaceLayout.ResumeLayout(false);
+            this.messageLayout.ResumeLayout(false);
+            this.messageLayout.PerformLayout();
+            this.buttonLayout.ResumeLayout(false);
+            this.buttonLayout.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button closeBtn;
+        private stopwatch.EllipseControl ellipseControl1;
+        private System.Windows.Forms.TableLayoutPanel whitespaceLayout;
+        private System.Windows.Forms.Panel messagePanel;
+        private System.Windows.Forms.TableLayoutPanel messageLayout;
+        private System.Windows.Forms.TableLayoutPanel buttonLayout;
+        private System.Windows.Forms.Label lblMessage;
+    }
+}

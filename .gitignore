@@ -1,0 +1,6 @@
+*.pdb
+*.config
+bin/
+obj/
+!/bin
+!App.config
