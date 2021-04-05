@@ -199,8 +199,8 @@ namespace stopwatch
                 if (step[i] > 0)
                 {
                     int hour = step[i] / 3600;
-                    int minute = step[i] / 60;
-                    int second = step[i] % 60;
+                    int minute = (step[i] - hour * 3600) / 60;
+                    int second = (step[i] - hour * 3600 - minute * 60) % 60;
                     msg += stepName[i] + " : " + setDigit(hour, minute, second) + "\n";
                 }
             }
