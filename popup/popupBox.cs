@@ -27,7 +27,7 @@ namespace popup
                 {
                     case WM_COPYDATA:
                         COPYDATASTRUCT cds = (COPYDATASTRUCT)m.GetLParam(typeof(COPYDATASTRUCT));
-                        formCall(100, cds.lpData);
+                        formCall(110, cds.lpData);
                         break;
                     default:
                         base.WndProc(ref m);
@@ -112,7 +112,7 @@ namespace popup
                 }
                 theForm.Close();
                 childCount--;
-                Renew(-100);
+                Renew(-110);
             }
         }
 
