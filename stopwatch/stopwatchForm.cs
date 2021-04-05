@@ -3,6 +3,10 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using libMessage;
+using System.Threading;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace stopwatch
 {
@@ -62,6 +66,8 @@ namespace stopwatch
             ry = 15;
             borderWidth = 3.0f;
             UpdateRegion();
+            // set process list
+            setProcessList();
         }
 
         // border
@@ -105,12 +111,53 @@ namespace stopwatch
         private DateTime startTime = DateTime.Now;
         private DateTime endTime;
         string currentTime;
+        int second = 0;
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        [DllImport("user32.dll")]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        private const int SW_SHOWMAXIMIZED = 3;
+
+        /*
+            0 : understand
+            1 : solution 
+            2 : coding
+            3 : execute & debug
+            4 : etc
+        */
+        int[] step = new int[5] { 0, 0, 0, 0, 0 };
+        Dictionary<string, int> dic = new Dictionary<string, int>();
+
+        private void setProcessList()
+        {
+            dic["chrome"] = 0;
+            dic["Photoshop"] = 1;
+            dic["gvim"] = 2;
+            dic["cmd"] = 3;
+        }
 
         private void stopwatch_Tick(object sender, EventArgs e)
         {
             TimeSpan span = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks + endTime.Ticks);
             currentTime = span.ToString("hh\\:mm\\:ss\\.ffffff");
             lblResult.Text = span.ToString("hh\\:mm\\:ss");
+            if(second != span.Seconds)
+            {
+                IntPtr handle = IntPtr.Zero;
+                uint pid = 0;
+                Process ps = null;
+                handle = GetForegroundWindow();
+                GetWindowThreadProcessId(handle, out pid);
+                ps = Process.GetProcessById((int)pid);
+                if (dic.ContainsKey(ps.ProcessName)) step[dic[ps.ProcessName]]++;
+                else step[4]++;
+                second = span.Seconds;
+            }
         }
 
         private void pauseResumeBtn_Click(object sender, EventArgs e)
@@ -144,7 +191,31 @@ namespace stopwatch
 
         private void stopwatchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            post.sendMessage("elapsed time : " + lblResult.Text);
+            this.Hide();
+            string[] stepName = new string[5] { "understand", "solution", "coding", "execute, debug", "etc" };
+            string msg = "elapsed time : " + lblResult.Text + "\n";
+            for (int i = 0; i < 5; i++)
+            {
+                if (step[i] > 0)
+                {
+                    int hour = step[i] / 3600;
+                    int minute = step[i] / 60;
+                    int second = step[i] % 60;
+                    msg += stepName[i] + " : " + setDigit(hour, minute, second) + "\n";
+                }
+            }
+            post.sendMessage(msg);
+        }
+
+        private string setDigit(int hour, int minute, int second)
+        {
+            string h = Convert.ToString(hour);
+            if (h.Length == 1) h = "0" + h;
+            string m = Convert.ToString(minute);
+            if (m.Length == 1) m = "0" + m;
+            string s = Convert.ToString(second);
+            if (s.Length == 1) s = "0" + s;
+            return h + ":" + m + ":" + s;
         }
 
         // form move
