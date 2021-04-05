@@ -130,7 +130,7 @@ namespace stopwatch
             3 : execute & debug
             4 : etc
         */
-        int[] step = new int[5] { 0, 0, 0, 0, 0 };
+        int[] step = new int[4] { 0, 0, 0, 0 };
         Dictionary<string, int> dic = new Dictionary<string, int>();
 
         private void setProcessList()
@@ -138,7 +138,7 @@ namespace stopwatch
             dic["chrome"] = 0;
             dic["Photoshop"] = 1;
             dic["gvim"] = 2;
-            dic["cmd"] = 3;
+            dic["cmd"] = 2;
         }
 
         private void stopwatch_Tick(object sender, EventArgs e)
@@ -155,7 +155,7 @@ namespace stopwatch
                 GetWindowThreadProcessId(handle, out pid);
                 ps = Process.GetProcessById((int)pid);
                 if (dic.ContainsKey(ps.ProcessName)) step[dic[ps.ProcessName]]++;
-                else step[4]++;
+                else step[3]++;
                 second = span.Seconds;
             }
         }
@@ -192,17 +192,20 @@ namespace stopwatch
         private void stopwatchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            string[] stepName = new string[5] { "understand", "solution", "coding", "execute, debug", "etc" };
+            string[] stepName = new string[4] { "understand", "solution", "coding, debug", "etc" };
             string msg = "elapsed time : " + lblResult.Text + "\n";
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
+                int hour = 0;
+                int minute = 0;
+                int second = 0;
                 if (step[i] > 0)
                 {
-                    int hour = step[i] / 3600;
-                    int minute = (step[i] - hour * 3600) / 60;
-                    int second = (step[i] - hour * 3600 - minute * 60) % 60;
-                    msg += stepName[i] + " : " + setDigit(hour, minute, second) + "\n";
+                    hour = step[i] / 3600;
+                    minute = (step[i] - hour * 3600) / 60;
+                    second = step[i] - hour * 3600 - minute * 60;
                 }
+                msg += "* " + stepName[i] + " : " + setDigit(hour, minute, second) + "\n";
             }
             post.sendMessage(msg);
         }
