@@ -51,9 +51,10 @@
             this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.ForeColor = System.Drawing.Color.Black;
-            this.closeBtn.Location = new System.Drawing.Point(3, 3);
+            this.closeBtn.Location = new System.Drawing.Point(0, 0);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(0);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(147, 109);
+            this.closeBtn.Size = new System.Drawing.Size(160, 118);
             this.closeBtn.TabIndex = 0;
             this.closeBtn.Text = "×";
             this.closeBtn.UseVisualStyleBackColor = false;
@@ -64,9 +65,10 @@
             this.messagePanel.BackColor = System.Drawing.Color.Transparent;
             this.messagePanel.Controls.Add(this.messageLayout);
             this.messagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messagePanel.Location = new System.Drawing.Point(3, 3);
+            this.messagePanel.Location = new System.Drawing.Point(0, 0);
+            this.messagePanel.Margin = new System.Windows.Forms.Padding(0);
             this.messagePanel.Name = "messagePanel";
-            this.messagePanel.Size = new System.Drawing.Size(794, 390);
+            this.messagePanel.Size = new System.Drawing.Size(800, 396);
             this.messagePanel.TabIndex = 2;
             // 
             // messageLayout
@@ -79,10 +81,11 @@
             this.messageLayout.Controls.Add(this.lblMessage, 0, 0);
             this.messageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.messageLayout.Location = new System.Drawing.Point(0, 0);
+            this.messageLayout.Margin = new System.Windows.Forms.Padding(0);
             this.messageLayout.Name = "messageLayout";
             this.messageLayout.RowCount = 1;
             this.messageLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.messageLayout.Size = new System.Drawing.Size(794, 390);
+            this.messageLayout.Size = new System.Drawing.Size(800, 396);
             this.messageLayout.TabIndex = 1;
             // 
             // buttonLayout
@@ -92,12 +95,13 @@
             this.buttonLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.buttonLayout.Controls.Add(this.closeBtn, 0, 0);
             this.buttonLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonLayout.Location = new System.Drawing.Point(638, 3);
+            this.buttonLayout.Location = new System.Drawing.Point(640, 0);
+            this.buttonLayout.Margin = new System.Windows.Forms.Padding(0);
             this.buttonLayout.Name = "buttonLayout";
             this.buttonLayout.RowCount = 2;
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.buttonLayout.Size = new System.Drawing.Size(153, 384);
+            this.buttonLayout.Size = new System.Drawing.Size(160, 396);
             this.buttonLayout.TabIndex = 1;
             // 
             // lblMessage
@@ -105,10 +109,12 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMessage.Location = new System.Drawing.Point(3, 0);
+            this.lblMessage.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMessage.Location = new System.Drawing.Point(0, 0);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Padding = new System.Windows.Forms.Padding(10, 15, 10, 10);
-            this.lblMessage.Size = new System.Drawing.Size(629, 390);
+            this.lblMessage.Size = new System.Drawing.Size(640, 396);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "label1";
             // 
@@ -120,6 +126,7 @@
             this.whitespaceLayout.Controls.Add(this.messagePanel, 0, 0);
             this.whitespaceLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.whitespaceLayout.Location = new System.Drawing.Point(0, 0);
+            this.whitespaceLayout.Margin = new System.Windows.Forms.Padding(0);
             this.whitespaceLayout.Name = "whitespaceLayout";
             this.whitespaceLayout.RowCount = 2;
             this.whitespaceLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 99F));

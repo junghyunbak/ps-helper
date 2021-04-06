@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace popup
 {
@@ -49,33 +50,37 @@ namespace popup
         int pos;
         int[] x;
         int[] y;
-        int[] m;
         int formWidth;
         int formHeight;
         int screenWidth;
         int screenHeight;
+        int buttonHeight = 30;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // back ground color transparent
             this.TransparencyKey = Color.Turquoise;
             this.BackColor = Color.Turquoise;
-            // form size
-            ratio = 3;
-            formWidth = ClientSize.Width / ratio;
-            formHeight = 0;
-            this.Size = new Size(formWidth, formHeight);
+            // get screen size
             screenWidth = SystemInformation.VirtualScreen.Width;
             screenHeight = SystemInformation.VirtualScreen.Height;
-            // form location
-            this.StartPosition = FormStartPosition.Manual;
-            x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
-            y = new int[4] { 0, 0, screenHeight - formHeight, screenHeight - formHeight };
-            m = new int[4] { formHeight, formHeight, -formHeight, -formHeight };
+            // set form size
+            ratio = 3;
+            formWidth = ClientSize.Width / ratio;
+            formHeight = buttonHeight;
+            this.Size = new Size(formWidth, formHeight);
+            // set clear buttn size
+            clearBtn.Height = buttonHeight;
+            clearBtn.Width = formWidth;
+            clearBtn.TabStop = false;
+            // set form location
             pos = 3;
+            x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
+            y = new int[4] { 0, 0, screenHeight, screenHeight };
+            this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(x[pos], y[pos]);
-            // table Layout
-            tableLayoutPanel1.RowStyles.Clear();
+            // set table Layout
+            popupItemPanel.RowStyles.Clear();
         }
 
         int childCount = 0;
@@ -83,16 +88,21 @@ namespace popup
 
         private void formCall(int height, string msg)
         {
+            // make form
             popupItem form = new popupItem(height, msg);
             form.TopLevel = false;
             form.ChildFormEvent += EventMethod;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle {
+            form.Width = formWidth;
+            form.Height = height;
+            popupItemPanel.RowStyles.Add(new RowStyle {
                 SizeType = SizeType.Absolute,
                 Height = height 
             });
-            tableLayoutPanel1.Controls.Add(form);
+            popupItemPanel.Controls.Add(form);
             childCount++;
+            // size renew
             Renew(height);
+            // form show
             form.Show();
             // keep child form handle
             IntPtr hWnd = form.Handle;
@@ -116,12 +126,48 @@ namespace popup
             }
         }
 
+        bool clearBtnActive = false;
+
         public void Renew(int height)
         {
             this.Top -= height;
             formHeight += height;
             this.Size = new Size(x[pos], formHeight);
-            if (childCount == 0) Application.Exit();
+            if (childCount == 0)
+            {
+                Application.Exit();
+            }
+            else if (childCount == 1)
+            {
+                if (clearBtnActive)
+                {
+                    this.Top += buttonHeight;
+                    clearBtnActive = false;
+                }
+            }
+            else {
+                if (!clearBtnActive)
+                {
+                    this.Top -= buttonHeight;
+                    clearBtnActive = true;
+                }
+            }
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            Form theForm = null;
+            while (childHandle.Count > 0)
+            {
+                theForm = getForm((IntPtr)childHandle.Dequeue());
+                if(theForm != null)
+                {
+                    theForm.Close();
+                    childCount--;
+                    Renew(-110);
+                    Delay(250);
+                }
+            }
         }
 
         public void EventMethod(int height)
@@ -135,6 +181,24 @@ namespace popup
         static public Form getForm(IntPtr handle)
         {
             return handle == IntPtr.Zero ? null : Control.FromHandle(handle) as Form;
+        }
+
+        private void tableLayoutPanel1_MouseEnter(object sender, EventArgs e)
+        {
+        }
+
+        // delay
+
+        private static DateTime Delay(int MS)
+        {
+            DateTime ThisMoment = DateTime.Now;
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+            DateTime AfterWards = ThisMoment.Add(duration);
+            while (AfterWards >= ThisMoment) {
+                Application.DoEvents();
+                ThisMoment = DateTime.Now;
+            }
+            return DateTime.Now;
         }
     }
 }

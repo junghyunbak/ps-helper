@@ -15,10 +15,6 @@ namespace popup
         // delegate event
         public delegate void ChildFormSendDataHandler(int height);
         public event ChildFormSendDataHandler ChildFormEvent;
-        // form size
-        int ratio;
-        int formWidth;
-        int formHeight;
         // program result
         int height;
         string msg;
@@ -35,11 +31,6 @@ namespace popup
             // back ground color transparent
             this.TransparencyKey = Color.Turquoise;
             this.BackColor = Color.Turquoise;
-            // form size
-            ratio = 3;
-            formWidth = ClientSize.Width / ratio;
-            formHeight = ClientSize.Height;
-            this.Size = new Size(formWidth, formHeight);
             // button design
             closeBtn.Font = new Font(closeBtn.Font, FontStyle.Bold);
             closeBtn.ForeColor = Color.White;
