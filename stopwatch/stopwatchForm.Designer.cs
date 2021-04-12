@@ -70,6 +70,7 @@
             // lblResult
             // 
             this.lblResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblResult.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResult.Location = new System.Drawing.Point(122, 0);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(549, 194);
@@ -172,6 +173,7 @@
             this.topLayout.Controls.Add(this.minimizedBtn, 2, 0);
             this.topLayout.Controls.Add(this.topLeftPanel, 0, 0);
             this.topLayout.Controls.Add(this.topRightPanel, 5, 0);
+            this.topLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.topLayout.Location = new System.Drawing.Point(3, 3);
             this.topLayout.Name = "topLayout";
             this.topLayout.RowCount = 1;
