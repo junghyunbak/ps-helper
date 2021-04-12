@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.popupItemPanel = new System.Windows.Forms.TableLayoutPanel();
             this.popupBoxLayout = new System.Windows.Forms.TableLayoutPanel();
             this.clearBtn = new System.Windows.Forms.Button();
+            this.hiddenTimer = new System.Windows.Forms.Timer(this.components);
             this.ellipseControl1 = new stopwatch.EllipseControl();
             this.popupBoxLayout.SuspendLayout();
             this.SuspendLayout();
@@ -41,46 +43,55 @@
             this.popupItemPanel.ColumnCount = 1;
             this.popupItemPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.popupItemPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.popupItemPanel.ForeColor = System.Drawing.Color.Black;
             this.popupItemPanel.Location = new System.Drawing.Point(0, 0);
             this.popupItemPanel.Margin = new System.Windows.Forms.Padding(0);
             this.popupItemPanel.Name = "popupItemPanel";
             this.popupItemPanel.RowCount = 1;
             this.popupItemPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.popupItemPanel.Size = new System.Drawing.Size(800, 370);
+            this.popupItemPanel.Size = new System.Drawing.Size(986, 350);
             this.popupItemPanel.TabIndex = 2;
-            this.popupItemPanel.MouseEnter += new System.EventHandler(this.tableLayoutPanel1_MouseEnter);
+            this.popupItemPanel.MouseEnter += new System.EventHandler(this.popupItemPanel_MouseEnter);
             // 
             // popupBoxLayout
             // 
             this.popupBoxLayout.BackColor = System.Drawing.Color.Transparent;
             this.popupBoxLayout.ColumnCount = 1;
             this.popupBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.popupBoxLayout.Controls.Add(this.clearBtn, 0, 2);
             this.popupBoxLayout.Controls.Add(this.popupItemPanel, 0, 0);
-            this.popupBoxLayout.Controls.Add(this.clearBtn, 0, 1);
             this.popupBoxLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.popupBoxLayout.Location = new System.Drawing.Point(0, 0);
+            this.popupBoxLayout.Location = new System.Drawing.Point(7, 0);
             this.popupBoxLayout.Margin = new System.Windows.Forms.Padding(0);
             this.popupBoxLayout.Name = "popupBoxLayout";
-            this.popupBoxLayout.RowCount = 2;
+            this.popupBoxLayout.RowCount = 4;
             this.popupBoxLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.popupBoxLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.popupBoxLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.popupBoxLayout.Size = new System.Drawing.Size(800, 400);
+            this.popupBoxLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.popupBoxLayout.Size = new System.Drawing.Size(986, 400);
             this.popupBoxLayout.TabIndex = 3;
             // 
             // clearBtn
             // 
-            this.clearBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.clearBtn.BackColor = System.Drawing.Color.Black;
+            this.clearBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clearBtn.FlatAppearance.BorderSize = 0;
             this.clearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearBtn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearBtn.ForeColor = System.Drawing.Color.White;
-            this.clearBtn.Location = new System.Drawing.Point(3, 373);
+            this.clearBtn.Location = new System.Drawing.Point(3, 360);
+            this.clearBtn.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(794, 24);
+            this.clearBtn.Size = new System.Drawing.Size(980, 30);
             this.clearBtn.TabIndex = 0;
             this.clearBtn.Text = "[ close all ]";
             this.clearBtn.UseVisualStyleBackColor = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
+            // hiddenTimer
+            // 
+            this.hiddenTimer.Tick += new System.EventHandler(this.hiddenTimer_Tick);
             // 
             // ellipseControl1
             // 
@@ -91,11 +102,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 400);
+            this.ClientSize = new System.Drawing.Size(1000, 400);
             this.ControlBox = false;
             this.Controls.Add(this.popupBoxLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "popupBox";
+            this.Opacity = 0.85D;
+            this.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.Text = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -109,6 +122,7 @@
         private System.Windows.Forms.TableLayoutPanel popupBoxLayout;
         private stopwatch.EllipseControl ellipseControl1;
         private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Timer hiddenTimer;
     }
 }
 

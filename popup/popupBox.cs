@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace popup
 {
@@ -54,7 +52,9 @@ namespace popup
         int formHeight;
         int screenWidth;
         int screenHeight;
-        int buttonHeight = 30;
+        const int error = 2;
+        const int whitespace = 10;
+        const int buttonHeight = 30;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -67,8 +67,9 @@ namespace popup
             // set form size
             ratio = 3;
             formWidth = ClientSize.Width / ratio;
-            formHeight = buttonHeight;
+            formHeight = buttonHeight + whitespace;
             this.Size = new Size(formWidth, formHeight);
+            this.MaximumSize = new Size(formWidth, screenHeight);
             // set clear buttn size
             clearBtn.Height = buttonHeight;
             clearBtn.Width = formWidth;
@@ -78,7 +79,7 @@ namespace popup
             x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
             y = new int[4] { 0, 0, screenHeight, screenHeight };
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(x[pos], y[pos]);
+            this.Location = new Point(x[pos], y[pos] - whitespace + error);
             // set table Layout
             popupItemPanel.RowStyles.Clear();
         }
@@ -92,8 +93,6 @@ namespace popup
             popupItem form = new popupItem(height, msg);
             form.TopLevel = false;
             form.ChildFormEvent += EventMethod;
-            form.Width = formWidth;
-            form.Height = height;
             popupItemPanel.RowStyles.Add(new RowStyle {
                 SizeType = SizeType.Absolute,
                 Height = height 
@@ -160,13 +159,13 @@ namespace popup
             while (childHandle.Count > 0)
             {
                 theForm = getForm((IntPtr)childHandle.Dequeue());
-                if(theForm != null)
-                {
+                //if(theForm != null)
+                //{
                     theForm.Close();
                     childCount--;
                     Renew(-110);
                     Delay(250);
-                }
+                //}
             }
         }
 
@@ -183,10 +182,6 @@ namespace popup
             return handle == IntPtr.Zero ? null : Control.FromHandle(handle) as Form;
         }
 
-        private void tableLayoutPanel1_MouseEnter(object sender, EventArgs e)
-        {
-        }
-
         // delay
 
         private static DateTime Delay(int MS)
@@ -199,6 +194,18 @@ namespace popup
                 ThisMoment = DateTime.Now;
             }
             return DateTime.Now;
+        }
+
+        // hidden timer
+
+        private void hiddenTimer_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void popupItemPanel_MouseEnter(object sender, EventArgs e)
+        {
+
         }
     }
 }

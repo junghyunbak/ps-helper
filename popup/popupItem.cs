@@ -17,6 +17,7 @@ namespace popup
         public event ChildFormSendDataHandler ChildFormEvent;
         // program result
         int height;
+        int lapse;
         string msg;
 
         public popupItem(int height, string msg)
@@ -28,6 +29,8 @@ namespace popup
 
         private void popupItem_Load(object sender, EventArgs e)
         {
+            // end time
+            lapse = 1;
             // back ground color transparent
             this.TransparencyKey = Color.Turquoise;
             this.BackColor = Color.Turquoise;
@@ -42,8 +45,23 @@ namespace popup
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
-            this.ChildFormEvent(height);
             this.Close();
+        }
+
+        private DateTime startTime = DateTime.Now;
+
+        private void closeTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan span = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
+            if(lapse == span.Minutes)
+            {
+                this.Close();
+            }
+        }
+
+        private void popupItem_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.ChildFormEvent(height);
         }
     }
 }
