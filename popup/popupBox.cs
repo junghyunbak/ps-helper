@@ -52,9 +52,8 @@ namespace popup
         int formHeight;
         int screenWidth;
         int screenHeight;
-        const int error = 2;
-        const int whitespace = 10;
-        const int buttonHeight = 30;
+        int buttonHeight;
+        int whitespace;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -67,19 +66,18 @@ namespace popup
             // set form size
             ratio = 3;
             formWidth = ClientSize.Width / ratio;
-            formHeight = buttonHeight + whitespace;
+            formHeight = clearBtnLayout.Height;
             this.Size = new Size(formWidth, formHeight);
             this.MaximumSize = new Size(formWidth, screenHeight);
-            // set clear buttn size
-            clearBtn.Height = buttonHeight;
-            clearBtn.Width = formWidth;
-            clearBtn.TabStop = false;
+            // calculate real whitespace
+            buttonHeight = clearBtn.Height;
+            whitespace = (formHeight-buttonHeight)/2;
             // set form location
             pos = 3;
             x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
             y = new int[4] { 0, 0, screenHeight, screenHeight };
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(x[pos], y[pos] - whitespace + error);
+            this.Location = new Point(x[pos], y[pos] - whitespace);
             // set table Layout
             popupItemPanel.RowStyles.Clear();
         }
@@ -120,8 +118,6 @@ namespace popup
                     theForm = getForm((IntPtr)childHandle.Dequeue());
                 }
                 theForm.Close();
-                childCount--;
-                Renew(-110);
             }
         }
 
@@ -134,20 +130,20 @@ namespace popup
             this.Size = new Size(x[pos], formHeight);
             if (childCount == 0)
             {
-                Application.Exit();
+                this.Close();
             }
             else if (childCount == 1)
             {
                 if (clearBtnActive)
                 {
-                    this.Top += buttonHeight;
+                    this.Top += buttonHeight + whitespace;
                     clearBtnActive = false;
                 }
             }
             else {
                 if (!clearBtnActive)
                 {
-                    this.Top -= buttonHeight;
+                    this.Top -= buttonHeight + whitespace;
                     clearBtnActive = true;
                 }
             }
@@ -159,13 +155,10 @@ namespace popup
             while (childHandle.Count > 0)
             {
                 theForm = getForm((IntPtr)childHandle.Dequeue());
-                //if(theForm != null)
-                //{
+                if (theForm != null){
                     theForm.Close();
-                    childCount--;
-                    Renew(-110);
-                    Delay(250);
-                //}
+                    Delay(2000);
+                }
             }
         }
 
