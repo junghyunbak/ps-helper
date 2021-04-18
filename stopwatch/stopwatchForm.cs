@@ -126,9 +126,8 @@ namespace stopwatch
         /*
             0 : understand
             1 : solution 
-            2 : coding
-            3 : execute & debug
-            4 : etc
+            2 : coding & debug
+            3 : etc
         */
         int[] step = new int[4] { 0, 0, 0, 0 };
         Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -192,33 +191,13 @@ namespace stopwatch
         private void stopwatchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            string[] stepName = new string[4] { "understand", "solution", "coding, debug", "etc" };
-            string msg = "elapsed time : " + lblResult.Text + "\n";
-            for (int i = 0; i < 4; i++)
+            string msg = "s";
+            for(int i = 0; i < 4; i++)
             {
-                int hour = 0;
-                int minute = 0;
-                int second = 0;
-                if (step[i] > 0)
-                {
-                    hour = step[i] / 3600;
-                    minute = (step[i] - hour * 3600) / 60;
-                    second = step[i] - hour * 3600 - minute * 60;
-                }
-                msg += "* " + stepName[i] + " : " + setDigit(hour, minute, second) + "\n";
+                msg += '.';
+                msg += Convert.ToString(step[i]);
             }
             post.sendMessage(msg);
-        }
-
-        private string setDigit(int hour, int minute, int second)
-        {
-            string h = Convert.ToString(hour);
-            if (h.Length == 1) h = "0" + h;
-            string m = Convert.ToString(minute);
-            if (m.Length == 1) m = "0" + m;
-            string s = Convert.ToString(second);
-            if (s.Length == 1) s = "0" + s;
-            return h + ":" + m + ":" + s;
         }
 
         // form move
