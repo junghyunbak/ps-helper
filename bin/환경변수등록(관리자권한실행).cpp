@@ -1,4 +1,3 @@
-#pragma comment(dll, "./bin/libmingwex-0.dll")
 #include <iostream>
 #include <unistd.h>
 #include <string>
@@ -9,7 +8,7 @@ int main(){
 	char buf[MAX_SIZE];
 	getcwd(buf, MAX_SIZE);
 	string path(buf);
-	string fullPath = "setx path \"\%path\%;" + path + "\\bin\" -m";
+	string fullPath = "setx path \"\%path\%;" + path + " -m";
 	system(fullPath.c_str());
 	return 0;
 }
