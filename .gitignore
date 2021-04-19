@@ -1,7 +1,8 @@
 *.pdb
 *.config
-bin/
+/.vs
 obj/
+bin/
 /bin/netstandard2.0
 !/bin
 !App.config
