@@ -22,7 +22,6 @@ namespace stopwatch
         int[] x;
         int[] y;
         int[] m;
-        int fontSize;
         int formWidth;
         int formHeight;
         int screenWidth;
@@ -30,33 +29,18 @@ namespace stopwatch
 
         private void stopwatchForm_Load(object sender, EventArgs e)
         {
-            // label design
-            fontSize = 23;
-            lblResult.Text = "00:00:00";
-            lblResult.ForeColor = Color.FromArgb(171, 171, 171);
-            lblResult.Font = new Font("굴림", fontSize, FontStyle.Bold);
-            // button design 
-            pauseResumeBtn.Font = new Font(pauseResumeBtn.Font, FontStyle.Bold);
-            pauseResumeBtn.ForeColor = Color.FromArgb(171, 171, 171);
-            pauseResumeBtn.FlatAppearance.BorderColor = Color.FromArgb(230, 230, 230);
-            closeBtn.Font = new Font(closeBtn.Font, FontStyle.Bold);
-            closeBtn.ForeColor = Color.FromArgb(171, 171, 171);
-            closeBtn.FlatAppearance.BorderColor = Color.FromArgb(230, 230, 230);
-            minimizedBtn.Font = new Font(minimizedBtn.Font, FontStyle.Bold);
-            minimizedBtn.ForeColor = Color.FromArgb(171, 171, 171);
-            minimizedBtn.FlatAppearance.BorderColor = Color.FromArgb(230, 230, 230);
             // form size
             ratio = 3;
-            formWidth = ClientSize.Width/ratio;
-            formHeight = ClientSize.Height/ratio;
+            formWidth = ClientSize.Width / ratio;
+            formHeight = ClientSize.Height / ratio;
             this.Size = new Size(formWidth, formHeight);
             screenWidth = SystemInformation.VirtualScreen.Width;
             screenHeight = SystemInformation.VirtualScreen.Height;
             // form location
             this.StartPosition = FormStartPosition.Manual;
-            x = new int[4] { 0, screenWidth-formWidth, 0, screenWidth-formWidth};
-            y = new int[4] { 0, 0, screenHeight-formHeight, screenHeight-formHeight};
-            m = new int[4] { formHeight, formHeight, -formHeight, -formHeight};
+            x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
+            y = new int[4] { 0, 0, screenHeight - formHeight, screenHeight - formHeight };
+            m = new int[4] { formWidth, -formWidth, formWidth, -formWidth};
             pos = 1;
             this.Location = new Point(x[pos], y[pos]);
             this.BackColor = Color.FromArgb(230, 230, 230);
@@ -145,7 +129,7 @@ namespace stopwatch
             TimeSpan span = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks + endTime.Ticks);
             currentTime = span.ToString("hh\\:mm\\:ss\\.ffffff");
             lblResult.Text = span.ToString("hh\\:mm\\:ss");
-            if(second != span.Seconds)
+            if (second != span.Seconds)
             {
                 IntPtr handle = IntPtr.Zero;
                 uint pid = 0;
@@ -192,58 +176,12 @@ namespace stopwatch
         {
             this.Hide();
             string msg = "s";
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 msg += '.';
                 msg += Convert.ToString(step[i]);
             }
             post.sendMessage(msg);
-        }
-
-        // form move
-
-        private DateTime start;
-
-        public void moveForm()
-        {
-            int ny = y[pos] + m[pos];
-            if(this.Top != ny)
-            {
-                start = DateTime.Now;
-                timer.Enabled = true;
-                this.Top = ny;
-            }
-        }
-
-        private void topLeftPanel_MouseEnter(object sender, EventArgs e)
-        {
-            if(pos == 0) moveForm();
-        }
-
-        private void topRightPanel_MouseEnter(object sender, EventArgs e)
-        {
-            if(pos == 1) moveForm();
-        }
-
-        private void bottomRightPanel_MouseEnter(object sender, EventArgs e)
-        {
-            if(pos == 3) moveForm();
-        }
-
-        private void bottomLeftPanel_MouseEnter(object sender, EventArgs e)
-        {
-            if(pos == 2) moveForm();
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = new TimeSpan(DateTime.Now.Ticks - start.Ticks);
-            Console.WriteLine(span.Seconds);
-            if (span.Seconds == 4)
-            {
-                this.Top = y[pos];
-                timer.Enabled = false;
-            }
         }
     }
 }
