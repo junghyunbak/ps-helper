@@ -40,15 +40,13 @@
             this.messageLayout = new System.Windows.Forms.TableLayoutPanel();
             this.buttonLayout = new System.Windows.Forms.TableLayoutPanel();
             this.infoPanel = new System.Windows.Forms.Panel();
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.whitespaceLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.closeTimer = new System.Windows.Forms.Timer(this.components);
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.closeTimer = new System.Windows.Forms.Timer(this.components);
             this.ellipseControl1 = new stopwatch.EllipseControl();
             this.messageLayout.SuspendLayout();
             this.buttonLayout.SuspendLayout();
             this.infoPanel.SuspendLayout();
-            this.whitespaceLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +64,7 @@
             this.closeBtn.Location = new System.Drawing.Point(0, 0);
             this.closeBtn.Margin = new System.Windows.Forms.Padding(0);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(150, 117);
+            this.closeBtn.Size = new System.Drawing.Size(150, 120);
             this.closeBtn.TabIndex = 0;
             this.closeBtn.Text = "×";
             this.closeBtn.UseVisualStyleBackColor = false;
@@ -81,12 +79,12 @@
             this.messageLayout.Controls.Add(this.buttonLayout, 1, 0);
             this.messageLayout.Controls.Add(this.infoPanel, 0, 0);
             this.messageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageLayout.Location = new System.Drawing.Point(0, 7);
+            this.messageLayout.Location = new System.Drawing.Point(0, 0);
             this.messageLayout.Margin = new System.Windows.Forms.Padding(0);
             this.messageLayout.Name = "messageLayout";
             this.messageLayout.RowCount = 1;
             this.messageLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.messageLayout.Size = new System.Drawing.Size(1000, 393);
+            this.messageLayout.Size = new System.Drawing.Size(1000, 400);
             this.messageLayout.TabIndex = 1;
             // 
             // buttonLayout
@@ -102,7 +100,7 @@
             this.buttonLayout.RowCount = 2;
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.buttonLayout.Size = new System.Drawing.Size(150, 393);
+            this.buttonLayout.Size = new System.Drawing.Size(150, 400);
             this.buttonLayout.TabIndex = 1;
             // 
             // infoPanel
@@ -112,43 +110,8 @@
             this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoPanel.Location = new System.Drawing.Point(3, 3);
             this.infoPanel.Name = "infoPanel";
-            this.infoPanel.Size = new System.Drawing.Size(844, 387);
+            this.infoPanel.Size = new System.Drawing.Size(844, 394);
             this.infoPanel.TabIndex = 2;
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.ForeColor = System.Drawing.Color.White;
-            this.lblMessage.Location = new System.Drawing.Point(144, 114);
-            this.lblMessage.Margin = new System.Windows.Forms.Padding(0);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.lblMessage.Size = new System.Drawing.Size(71, 28);
-            this.lblMessage.TabIndex = 2;
-            this.lblMessage.Text = "label1";
-            // 
-            // whitespaceLayout
-            // 
-            this.whitespaceLayout.BackColor = System.Drawing.Color.Transparent;
-            this.whitespaceLayout.ColumnCount = 1;
-            this.whitespaceLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.whitespaceLayout.Controls.Add(this.messageLayout, 0, 1);
-            this.whitespaceLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.whitespaceLayout.Location = new System.Drawing.Point(0, 0);
-            this.whitespaceLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.whitespaceLayout.Name = "whitespaceLayout";
-            this.whitespaceLayout.RowCount = 2;
-            this.whitespaceLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 7F));
-            this.whitespaceLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.whitespaceLayout.Size = new System.Drawing.Size(1000, 400);
-            this.whitespaceLayout.TabIndex = 1;
-            // 
-            // closeTimer
-            // 
-            this.closeTimer.Enabled = true;
-            this.closeTimer.Tick += new System.EventHandler(this.closeTimer_Tick);
             // 
             // chart
             // 
@@ -198,6 +161,25 @@
             this.chart.TabIndex = 3;
             this.chart.Text = "chart1";
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoEllipsis = true;
+            this.lblMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lblMessage.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.ForeColor = System.Drawing.Color.White;
+            this.lblMessage.Location = new System.Drawing.Point(144, 114);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.lblMessage.Size = new System.Drawing.Size(71, 28);
+            this.lblMessage.TabIndex = 2;
+            this.lblMessage.Text = "label1";
+            // 
+            // closeTimer
+            // 
+            this.closeTimer.Enabled = true;
+            this.closeTimer.Tick += new System.EventHandler(this.closeTimer_Tick);
+            // 
             // ellipseControl1
             // 
             this.ellipseControl1.CornerRadius = 10;
@@ -209,7 +191,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 400);
-            this.Controls.Add(this.whitespaceLayout);
+            this.Controls.Add(this.messageLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "popupItem";
             this.Text = "Form1";
@@ -220,8 +202,6 @@
             this.buttonLayout.ResumeLayout(false);
             this.buttonLayout.PerformLayout();
             this.infoPanel.ResumeLayout(false);
-            this.infoPanel.PerformLayout();
-            this.whitespaceLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
 
@@ -231,7 +211,6 @@
 
         private System.Windows.Forms.Button closeBtn;
         private stopwatch.EllipseControl ellipseControl1;
-        private System.Windows.Forms.TableLayoutPanel whitespaceLayout;
         private System.Windows.Forms.TableLayoutPanel messageLayout;
         private System.Windows.Forms.TableLayoutPanel buttonLayout;
         private System.Windows.Forms.Label lblMessage;

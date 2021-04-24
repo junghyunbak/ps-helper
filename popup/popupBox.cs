@@ -91,6 +91,7 @@ namespace popup
             popupItem form = new popupItem(height, msg);
             form.TopLevel = false;
             form.ChildFormEvent += EventMethod;
+            form.Padding = new Padding(0, whitespace, 0, 0);
             popupItemPanel.RowStyles.Add(new RowStyle {
                 SizeType = SizeType.Absolute,
                 Height = height 
@@ -157,7 +158,7 @@ namespace popup
                 theForm = getForm((IntPtr)childHandle.Dequeue());
                 if (theForm != null){
                     theForm.Close();
-                    Delay(2000);
+                    Delay(500);
                 }
             }
         }
