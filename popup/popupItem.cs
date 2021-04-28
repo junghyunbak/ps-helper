@@ -23,7 +23,7 @@ namespace popup
         public popupItem(int height, string msg)
         {
             this.height = height;
-            spstring = msg.Split('.');
+            spstring = msg.Split('|');
             InitializeComponent();
         }
 
@@ -45,6 +45,12 @@ namespace popup
                 {
                     chart.Series["Series1"].Points.Add(int.Parse(spstring[n-i]));
                 }
+            }
+            else if (spstring[0] == "t") // translate
+            {
+                lblMessage.Dock = DockStyle.Fill;
+                lblMessage.Padding = new Padding(10, 10, 10, 10);
+                lblMessage.Text = spstring[1];
             }
         }
 

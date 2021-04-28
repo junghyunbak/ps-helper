@@ -178,7 +178,7 @@ namespace stopwatch
             string msg = "s";
             for (int i = 0; i < 4; i++)
             {
-                msg += '.';
+                msg += '|';
                 msg += Convert.ToString(step[i]);
             }
             post.sendMessage(msg);

@@ -13,16 +13,22 @@ int main(int argc, char** argv){
 	int idx = startupPath.rfind("\\");
 	startupPath.erase(startupPath.begin()+idx, startupPath.end());
 	string filePath;
-	// flag
+	// stopwatch flag 
 	bool stopwatch = false;
+	// translate flag
+	bool translate = false;
+	bool reverse = false;
 	// command-line arguments parsing
 	int c;
 	extern char* optarg;
-	while((c = getopt(argc, argv, "tr:s")) != -1){
+	while((c = getopt(argc, argv, "rt:s")) != -1){
 		switch(c){
-			case 't':
-				break;
 			case 'r':
+				reverse = true;
+				break;
+			case 't':
+				translate = true;
+				filePath = startupPath + "\\translate.exe";
 				break;
 			case 's':
 				stopwatch = true;
@@ -30,8 +36,16 @@ int main(int argc, char** argv){
 				break;
 		}
 	}
+	if(translate){
+		string tmp; 
+		if(!reverse) tmp = filePath + " " + optarg + " i";
+		else tmp = filePath + " " + optarg + " r";
+		system(tmp.c_str());
+		return 0;
+	}
 	if(stopwatch){
 		execl(filePath.c_str(), "stopwatch", 0);
+		return 0;
 	}
 	return 0;
 }
