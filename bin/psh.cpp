@@ -38,8 +38,8 @@ int main(int argc, char** argv){
 	}
 	if(translate){
 		string tmp; 
-		if(!reverse) tmp = filePath + " " + optarg + " i";
-		else tmp = filePath + " " + optarg + " r";
+		if(!reverse) tmp = filePath + " \"" + optarg + "\" i";
+		else tmp = filePath + " \"" + optarg + "\" r";
 		system(tmp.c_str());
 		return 0;
 	}
