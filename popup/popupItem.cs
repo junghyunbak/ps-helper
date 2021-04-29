@@ -72,16 +72,15 @@ namespace popup
             // back ground color transparent
             this.BackColor = Color.Turquoise;
             this.TransparencyKey = this.BackColor;
-            // button design
-            closeBtn.Font = new Font(closeBtn.Font, FontStyle.Bold);
-            closeBtn.ForeColor = Color.White;
-            closeBtn.FlatAppearance.BorderColor = Color.Black;
+            // remove button focus
+            lblMessage.Focus();
             // parsing message
             parsingMessage();
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
+            lblMessage.Focus(); // remove button focus
             this.Close();
         }
 

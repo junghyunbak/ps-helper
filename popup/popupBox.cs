@@ -152,6 +152,7 @@ namespace popup
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
+            popupItemPanel.Focus(); // remove button focus
             Form theForm = null;
             while (childHandle.Count > 0)
             {

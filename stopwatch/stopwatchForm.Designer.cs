@@ -52,6 +52,8 @@
             this.pauseResumeBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pauseResumeBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.pauseResumeBtn.FlatAppearance.BorderSize = 0;
+            this.pauseResumeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.pauseResumeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.pauseResumeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pauseResumeBtn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pauseResumeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
@@ -82,6 +84,8 @@
             this.closeBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.closeBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.closeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeBtn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.closeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
@@ -154,6 +158,8 @@
             this.minimizedBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.minimizedBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.minimizedBtn.FlatAppearance.BorderSize = 0;
+            this.minimizedBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.minimizedBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.minimizedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizedBtn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.minimizedBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));

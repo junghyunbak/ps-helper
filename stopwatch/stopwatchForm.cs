@@ -50,6 +50,8 @@ namespace stopwatch
             ry = 15;
             borderWidth = 3.0f;
             UpdateRegion();
+            // remove button focus
+            lblResult.Focus();
             // set process list
             setProcessList();
         }
@@ -144,7 +146,8 @@ namespace stopwatch
         }
 
         private void pauseResumeBtn_Click(object sender, EventArgs e)
-        {
+        { 
+            lblResult.Focus(); // remove button focus
             if (pauseResumeBtn.Text == "∥")
             {
                 pauseResumeBtn.Text = "▶";
@@ -164,11 +167,13 @@ namespace stopwatch
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
+            lblResult.Focus(); // remove button focus
             Application.Exit();
         }
 
         private void minimizedBtn_Click(object sender, EventArgs e)
         {
+            lblResult.Focus(); // remove button focus
             this.WindowState = FormWindowState.Minimized;
         }
 

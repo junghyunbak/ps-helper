@@ -59,7 +59,10 @@
             // 
             this.clearBtn.BackColor = System.Drawing.Color.Black;
             this.clearBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clearBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.clearBtn.FlatAppearance.BorderSize = 0;
+            this.clearBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.clearBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.clearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearBtn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearBtn.ForeColor = System.Drawing.Color.White;
