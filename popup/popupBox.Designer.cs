@@ -127,6 +127,7 @@
             this.Controls.Add(this.popupBoxLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "popupBox";
+            this.Opacity = 0.88D;
             this.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.Text = "Form1";
             this.TopMost = true;
