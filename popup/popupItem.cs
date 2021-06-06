@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace popup
         public event ChildFormSendDataHandler ChildFormEvent;
         // program result
         int height;
-        int lapse;
+        int lapse = 1;
         string[] spstring;
 
         public popupItem(int height, string msg)
@@ -46,7 +47,7 @@ namespace popup
                     chart.Series["Series1"].Points.Add(int.Parse(spstring[n-i]));
                 }
             }
-            else if (spstring[0] == "t") // translate
+            else if (spstring[0] == "t" || spstring[0] == "h" || spstring[0] == "c") // translate
             {
                 lblMessage.Dock = DockStyle.Fill;
                 lblMessage.Padding = new Padding(10, 10, 10, 10);
@@ -65,10 +66,24 @@ namespace popup
             return h + ":" + m + ":" + s;
         }
 
+        private string resourcePath = "";
+
         private void popupItem_Load(object sender, EventArgs e)
         {
+            resourcePath = Directory.GetParent(Application.StartupPath).FullName + "\\res\\";
             // end time
-            lapse = 1;
+            string filePath = resourcePath + "data.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(new FileStream(
+                    filePath,
+                    FileMode.Open
+                    )
+                );
+                string[] spstr = sr.ReadLine().Split(' ');
+                lapse = int.Parse(spstr[2]);
+                sr.Close();
+            }
             // back ground color transparent
             this.BackColor = Color.Turquoise;
             this.TransparencyKey = this.BackColor;

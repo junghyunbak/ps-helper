@@ -3,10 +3,11 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using libMessage;
-using System.Threading;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.IO;
+using System.Numerics;
 
 namespace stopwatch
 {
@@ -15,20 +16,22 @@ namespace stopwatch
         public stopwatchForm()
         {
             InitializeComponent();
+            var tab = new TabPadding(tabControl1);
         }
 
-        int ratio;
-        int pos;
+        int ratio = 3;
+        int pos = 1;
         int[] x;
         int[] y;
-        int[] m;
         int formWidth;
         int formHeight;
         int screenWidth;
         int screenHeight;
+        string resourcePath = "";
 
         private void stopwatchForm_Load(object sender, EventArgs e)
         {
+            resourcePath = Directory.GetParent(Application.StartupPath).FullName + "\\res\\";
             // form size
             ratio = 3;
             formWidth = ClientSize.Width / ratio;
@@ -40,8 +43,19 @@ namespace stopwatch
             this.StartPosition = FormStartPosition.Manual;
             x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
             y = new int[4] { 0, 0, screenHeight - formHeight, screenHeight - formHeight };
-            m = new int[4] { formWidth, -formWidth, formWidth, -formWidth};
-            pos = 1;
+            // position
+            string filePath = resourcePath + "data.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(new FileStream(
+                    filePath,
+                    FileMode.Open
+                    )
+                );
+                string[] spstr = sr.ReadLine().Split(' ');
+                pos = int.Parse(spstr[0]);
+                sr.Close();
+            }
             this.Location = new Point(x[pos], y[pos]);
             this.BackColor = Color.FromArgb(230, 230, 230);
             // form border
@@ -57,7 +71,6 @@ namespace stopwatch
         }
 
         // border
-
         int rx = 0;
         int ry = 0;
         float borderWidth = 0;
@@ -187,6 +200,70 @@ namespace stopwatch
                 msg += Convert.ToString(step[i]);
             }
             post.sendMessage(msg);
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            lblResult.Focus(); // remove button focus
+            int n = tabControl1.Controls.Count;
+            if (tabControl1.SelectedIndex == 0) tabControl1.SelectedIndex = n-1;
+            else tabControl1.SelectedIndex -= 1;
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            lblResult.Focus(); // remove button focus
+            int n = tabControl1.Controls.Count;
+            if (tabControl1.SelectedIndex == n-1) tabControl1.SelectedIndex = 0;
+            else tabControl1.SelectedIndex += 1;
+        }
+
+        private void txtExponent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int retVal = 1;
+            if (!int.TryParse(txtExponent.Text, out retVal)) return;
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                Int64 val = Int64.Parse(txtExponent.Text);
+                int cnt = 0;
+                while (val/2 != 0)
+                {
+                    val /= 2;
+                    cnt++;
+                }
+                post.sendMessage("c|" + cnt.ToString());
+            }
+        }
+
+        private void comb()
+        {
+            BigInteger n = int.Parse(txtCombN.Text);
+            BigInteger r = int.Parse(txtCombR.Text);
+            post.sendMessage("c|" + (fact(n)/(fact(r)*fact(n-r))).ToString());
+        }
+
+        private BigInteger fact(BigInteger n)
+        {
+            if (n == 0) return 1;
+            else return n * fact(n - 1);
+        }
+
+        private void txtCombN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int retVal = 1;
+            if (e.KeyChar != (char)Keys.Enter) return;
+            if (!int.TryParse(txtCombN.Text, out retVal)) return;
+            if (!int.TryParse(txtCombR.Text, out retVal)) return;
+            comb();
+        }
+
+        private void txtCombR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int retVal = 1;
+            if (e.KeyChar != (char)Keys.Enter) return;
+            if (!int.TryParse(txtCombN.Text, out retVal)) return;
+            if (!int.TryParse(txtCombR.Text, out retVal)) return;
+            comb();
         }
     }
 }

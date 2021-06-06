@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Collections;
+using System.IO;
 
 namespace popup
 {
@@ -44,8 +45,8 @@ namespace popup
             InitializeComponent();
         }
 
-        int ratio;
-        int pos;
+        int ratio = 3;
+        int pos = 1;
         int[] x;
         int[] y;
         int formWidth;
@@ -54,9 +55,11 @@ namespace popup
         int screenHeight;
         int buttonHeight;
         int whitespace;
+        string resourcePath = "";
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            resourcePath = Directory.GetParent(Application.StartupPath).FullName + "\\res\\";
             // back ground color transparent
             this.TransparencyKey = Color.Turquoise;
             this.BackColor = Color.Turquoise;
@@ -73,9 +76,20 @@ namespace popup
             buttonHeight = clearBtn.Height;
             whitespace = (formHeight-buttonHeight)/2;
             // set form location
-            pos = 3;
-            x = new int[4] { 0, screenWidth - formWidth, 0, screenWidth - formWidth };
-            y = new int[4] { 0, 0, screenHeight, screenHeight };
+            string filePath = resourcePath + "data.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(new FileStream(
+                    filePath,
+                    FileMode.Open
+                    )
+                );
+                string[] spstr = sr.ReadLine().Split(' ');
+                pos = int.Parse(spstr[1]);
+                sr.Close();
+            }
+            x = new int[2] { 0, screenWidth - formWidth };
+            y = new int[2] { screenHeight, screenHeight };
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(x[pos], y[pos] - whitespace);
             // set table Layout
@@ -128,7 +142,7 @@ namespace popup
         {
             this.Top -= height;
             formHeight += height;
-            this.Size = new Size(x[pos], formHeight);
+            this.Size = new Size(formWidth, formHeight);
             if (childCount == 0)
             {
                 this.Close();

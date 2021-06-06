@@ -6,3 +6,10 @@ bin/
 /bin/netstandard2.0
 !/bin
 !App.config
+/res/*
+!/res/main.html
+!/res/preview.html
+!/res/style.css
+!/res/data.txt
+!/res/example.md
+!/res/cat.jpg

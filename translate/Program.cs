@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Windows.Forms;
 
 namespace translate
 {
@@ -16,12 +17,26 @@ namespace translate
         [STAThread]
         static void Main(string[] args)
         {
+            string[] language = { "ko", "en" };
+            string[] spstring = { };
+            string resourcePath = Directory.GetParent(Application.StartupPath).FullName + "\\res\\";
+            string filePath = resourcePath + "data.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(new FileStream(
+                    filePath,
+                    FileMode.Open
+                    )
+                );
+                spstring = sr.ReadLine().Split(' ');
+                sr.Close();
+            }
             string url = "https://openapi.naver.com/v1/papago/n2mt";
             string clientId = "nNqf9qWgG6CR_jkQzoGN";
             string clientSecret = "csoFEi5jWi";
             string query = args[0];
-            string source = "en";
-            string target = "ko";
+            string source = language[int.Parse(spstring[3])];
+            string target = language[int.Parse(spstring[4])];
             if (args[1] == "r")
             {
                 string tmp;

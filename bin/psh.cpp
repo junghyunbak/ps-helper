@@ -18,10 +18,14 @@ int main(int argc, char** argv){
 	// translate flag
 	bool translate = false;
 	bool reverse = false;
+	// modify flag
+	bool modify = false;
+	// helper flag
+	bool helper = false;
 	// command-line arguments parsing
 	int c;
 	extern char* optarg;
-	while((c = getopt(argc, argv, "rt:s")) != -1){
+	while((c = getopt(argc, argv, "rt:smh")) != -1){
 		switch(c){
 			case 'r':
 				reverse = true;
@@ -34,6 +38,14 @@ int main(int argc, char** argv){
 				stopwatch = true;
 				filePath = startupPath + "\\stopwatch.exe";
 				break;
+			case 'm':
+				modify = true;
+				filePath = startupPath + "\\modify.exe";
+				break;
+			case 'h':
+				helper = true;
+				filePath = startupPath + "\\helper.exe";
+				break;
 		}
 	}
 	if(translate){
@@ -45,6 +57,14 @@ int main(int argc, char** argv){
 	}
 	if(stopwatch){
 		execl(filePath.c_str(), "stopwatch", 0);
+		return 0;
+	}
+	if(modify){
+		execl(filePath.c_str(), "modify", 0);
+		return 0;
+	}
+	if(helper){
+		system(filePath.c_str());
 		return 0;
 	}
 	return 0;
