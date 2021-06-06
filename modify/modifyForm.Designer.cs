@@ -60,16 +60,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.popupTabPage = new System.Windows.Forms.TabPage();
             this.btnPopupSave = new System.Windows.Forms.Button();
-            this.cboPopupLoc = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.cboPopupTime = new System.Windows.Forms.ComboBox();
+            this.cboPopupLoc = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cboSource = new System.Windows.Forms.ComboBox();
-            this.cboTarget = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnTranslateSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboTarget = new System.Windows.Forms.ComboBox();
+            this.cboSource = new System.Windows.Forms.ComboBox();
             this.mainLayout.SuspendLayout();
             this.titleBarLayout.SuspendLayout();
             this.menuLayout.SuspendLayout();
@@ -495,36 +495,6 @@
             this.btnPopupSave.UseVisualStyleBackColor = true;
             this.btnPopupSave.Click += new System.EventHandler(this.btnPopupSave_Click);
             // 
-            // cboPopupLoc
-            // 
-            this.cboPopupLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPopupLoc.FormattingEnabled = true;
-            this.cboPopupLoc.Items.AddRange(new object[] {
-            "leftBottom",
-            "RightBottom"});
-            this.cboPopupLoc.Location = new System.Drawing.Point(128, 50);
-            this.cboPopupLoc.Name = "cboPopupLoc";
-            this.cboPopupLoc.Size = new System.Drawing.Size(192, 23);
-            this.cboPopupLoc.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "location : ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 96);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(179, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "popup duration (minute) : ";
-            // 
             // cboPopupTime
             // 
             this.cboPopupTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -545,6 +515,36 @@
             this.cboPopupTime.Size = new System.Drawing.Size(87, 23);
             this.cboPopupTime.TabIndex = 1;
             // 
+            // cboPopupLoc
+            // 
+            this.cboPopupLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPopupLoc.FormattingEnabled = true;
+            this.cboPopupLoc.Items.AddRange(new object[] {
+            "leftBottom",
+            "RightBottom"});
+            this.cboPopupLoc.Location = new System.Drawing.Point(128, 50);
+            this.cboPopupLoc.Name = "cboPopupLoc";
+            this.cboPopupLoc.Size = new System.Drawing.Size(192, 23);
+            this.cboPopupLoc.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(48, 96);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(179, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "popup duration (minute) : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(48, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "location : ";
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.btnTranslateSave);
@@ -559,39 +559,6 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // cboSource
-            // 
-            this.cboSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSource.FormattingEnabled = true;
-            this.cboSource.Items.AddRange(new object[] {
-            "ko",
-            "en"});
-            this.cboSource.Location = new System.Drawing.Point(136, 50);
-            this.cboSource.Name = "cboSource";
-            this.cboSource.Size = new System.Drawing.Size(67, 23);
-            this.cboSource.TabIndex = 0;
-            // 
-            // cboTarget
-            // 
-            this.cboTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTarget.FormattingEnabled = true;
-            this.cboTarget.Items.AddRange(new object[] {
-            "ko",
-            "en"});
-            this.cboTarget.Location = new System.Drawing.Point(247, 50);
-            this.cboTarget.Name = "cboTarget";
-            this.cboTarget.Size = new System.Drawing.Size(67, 23);
-            this.cboTarget.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(217, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 15);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "to";
             // 
             // btnTranslateSave
             // 
@@ -612,6 +579,39 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "language : ";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(217, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 15);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "to";
+            // 
+            // cboTarget
+            // 
+            this.cboTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTarget.FormattingEnabled = true;
+            this.cboTarget.Items.AddRange(new object[] {
+            "ko",
+            "en"});
+            this.cboTarget.Location = new System.Drawing.Point(247, 50);
+            this.cboTarget.Name = "cboTarget";
+            this.cboTarget.Size = new System.Drawing.Size(67, 23);
+            this.cboTarget.TabIndex = 0;
+            // 
+            // cboSource
+            // 
+            this.cboSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSource.FormattingEnabled = true;
+            this.cboSource.Items.AddRange(new object[] {
+            "ko",
+            "en"});
+            this.cboSource.Location = new System.Drawing.Point(136, 50);
+            this.cboSource.Name = "cboSource";
+            this.cboSource.Size = new System.Drawing.Size(67, 23);
+            this.cboSource.TabIndex = 0;
+            // 
             // modifyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -621,6 +621,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "modifyForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.modifyForm_FormClosing);
             this.Load += new System.EventHandler(this.modifyForm_Load);
             this.mainLayout.ResumeLayout(false);
             this.titleBarLayout.ResumeLayout(false);

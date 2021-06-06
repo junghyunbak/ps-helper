@@ -17,3 +17,16 @@ img {
 	width:100%;
 	border:1px solid #b4b4b4;
 }
+
+table {
+	border-collapse:collapse;
+}
+
+table th, td{
+	border:1px solid #ddd;
+}
+
+table thead th {
+	color:white;
+	background-color:#f68e2c;
+}

@@ -48,6 +48,7 @@ namespace markdown
             sw.Close();
             sr.Close();
             webBrowser.Url = new Uri(string.Format("file:///{0}/../res/main.html", Application.StartupPath));
+            File.WriteAllText(htmlPath, string.Empty);
         }
 
         private void minimizedBtn_Click(object sender, EventArgs e)

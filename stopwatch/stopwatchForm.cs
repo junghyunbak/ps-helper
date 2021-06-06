@@ -133,10 +133,18 @@ namespace stopwatch
 
         private void setProcessList()
         {
-            dic["chrome"] = 0;
-            dic["Photoshop"] = 1;
-            dic["gvim"] = 2;
-            dic["cmd"] = 2;
+            dic["chrome"]
+            = dic["iexplore"] // internet explorer
+            = 0;
+
+            dic["Photoshop"]
+            = dic["mspaint"] // paint
+            = 1;
+
+            dic["gvim"] // windows vim editor
+            = dic["cmd"] // windows command line
+            = dic["devenv"] // visual studio
+            = 2;
         }
 
         private void stopwatch_Tick(object sender, EventArgs e)

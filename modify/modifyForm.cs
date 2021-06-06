@@ -339,5 +339,11 @@ namespace modify
             }
             MessageBox.Show("저장되었습니다.");
         }
+
+        private void modifyForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string htmlPath = resourcePath + "preview.html";
+            File.WriteAllText(htmlPath, string.Empty);
+        }
     }
 }
