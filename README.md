@@ -1,4 +1,4 @@
-# psHelper
+# PS Helper
 
 ## 개요
 
