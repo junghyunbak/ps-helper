@@ -50,6 +50,10 @@
 
 4. 도움말
 
+```c++
+> psh -h // start helper
+```
+
 ![그림2](https://user-images.githubusercontent.com/44913775/120919961-41514900-c6f7-11eb-9a60-45ffd956ee5e.png)
 
 5. 설정
